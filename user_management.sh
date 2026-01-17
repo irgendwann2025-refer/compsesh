@@ -18,7 +18,7 @@ echo "=========================================="
 echo -e "\n--- CURRENT SYSTEM USERS (UID >= 1000 & Root) ---"
 printf "%-15s %-10s %-20s\n" "USER" "UID" "STATUS"
 echo "--------------------------------------------------"
-awk -F: '$3 == 0 || $3 >= 1000 {print $1, $3}' /etc/passwd | while read UNAME UID; do
+awk -F: '$3 == 0 || $3 >= 1000 {print $1, $3}' /etc/passwd | while read UNAME USER_ID; do
     # Check if account is locked/disabled in shadow file
     STATUS="Enabled"
     if sudo grep "^$UNAME:" /etc/shadow | cut -d: -f2 | grep -qE "^[!#*]"; then
